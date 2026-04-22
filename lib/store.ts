@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { z } from 'zod'
+import { generateId } from './id'
 import type {
   BusinessTask,
   Milestone,
@@ -11,8 +12,6 @@ import type {
   ViewScale,
   GanttItemType,
 } from './types'
-
-const generateId = () => crypto.randomUUID()
 
 const businessTaskSchema = z.object({
   id: z.string(),

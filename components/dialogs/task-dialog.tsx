@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { generateId } from '@/lib/id'
 import { useProjectStore } from '@/lib/store'
 import { taskCapacityOptions, taskStatusLabels, priorityLabels } from '@/lib/types'
 import {
@@ -143,7 +144,7 @@ export function TaskDialog({ open, onOpenChange, editId, defaultBusinessTaskId }
                 onClick={() =>
                   setFormData({
                     ...formData,
-                    subtasks: [...formData.subtasks, { id: crypto.randomUUID(), title: '' }]
+                    subtasks: [...formData.subtasks, { id: generateId(), title: '' }]
                   })
                 }
               >
