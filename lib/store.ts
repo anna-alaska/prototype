@@ -33,7 +33,7 @@ const taskSchema = z.object({
   businessTaskId: z.string(),
   sprintId: z.string().optional(),
   milestoneId: z.string().optional(),
-  capacity: z.union([z.literal(1), z.literal(3), z.literal(5), z.literal(8), z.literal(13)]).optional(),
+    capacity: z.union([z.literal(1), z.literal(3), z.literal(5), z.literal(8), z.literal(13)]).optional(),
   subtasks: z.array(z.object({
     id: z.string(),
     title: z.string(),
@@ -278,7 +278,7 @@ const createDemoData = (): {
         id: 'demo-task-metrics-api',
         title: 'Metrics API integration',
         businessTaskId: bt2Id,
-        capacity: 3,
+        capacity: 2,
         subtasks: [],
         status: 'todo',
         priority: 'low',
@@ -376,7 +376,7 @@ export const useProjectStore = create<ProjectStore>()(
             })),
           milestones: state.milestones.map((milestone) => ({
             ...milestone,
-            requiredBusinessTaskIds: milestone.requiredBusinessTaskIds.filter((btId) => btId !== id),
+            requiredBusinessTaskIds: (milestone.requiredBusinessTaskIds ?? []).filter((btId) => btId !== id),
           })),
           tasks: state.tasks.filter((t) => t.businessTaskId !== id),
         }))
